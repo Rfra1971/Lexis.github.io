@@ -1,0 +1,639 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --primary-blue: #2d3e50;
+      --accent-gold: #c5a47e;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      line-height: 1.6;
+      color: var(--dark-gray);
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: -10px;
+      width: 100%;
+      padding: 1.5rem 5%;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Hide the mobile elements on larger screens */
+    .mobile-menu-icon,
+    .mobile-menu-box {
+      display: none;
+    }
+
+    /* Show hamburger icon and hide the desktop navigation on small screens */
+    @media (max-width: 768px) {
+      /* Hide desktop navigation */
+      .desktop-nav {
+        display: none;
+      }
+
+      /* Display the hamburger icon */
+      .mobile-menu-icon {
+        display: block;
+        font-size: 1.8rem;
+        color: var(--primary-blue);
+        cursor: pointer;
+      }
+
+      /* Style the mobile menu box */
+      .mobile-menu-box {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: 70px; /* Adjust based on your header height */
+        right: 5%;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        z-index: 1001;
+        overflow: hidden;
+      }
+
+      .mobile-menu-box a {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: var(--dark-gray);
+        text-decoration: none;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background 0.3s;
+      }
+
+      .mobile-menu-box a:last-child {
+        border-bottom: none;
+      }
+
+      .mobile-menu-box a:hover {
+        background: var(--light-gray);
+      }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      text-decoration: none;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--dark-gray);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* Hero Slider Styles */
+    #hero-slider {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      margin-top: 80px; /* To account for the fixed header */
+      overflow: hidden;
+    }
+
+    .slider {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Navigation Arrows */
+    .slider button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .slider button:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .slider .prev {
+      left: 20px;
+    }
+
+    .slider .next {
+      right: 20px;
+    }
+
+    /* Common Section Styles */
+    section {
+      padding: 0.1rem 5%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 4rem;
+      color: var(--primary-blue);
+    }
+
+    /* Office Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* About Section */
+    .about {
+      background: var(--light-gray);
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Attorneys Grid */
+    .attorneys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .attorney-card {
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .attorney-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .attorney-card i {
+      font-size: 2.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+
+    /* Services Offered Section */
+    #services {
+      padding: 3rem 5%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    #services.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .service-card i {
+      font-size: 3rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-blue);
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      color: var(--dark-gray);
+    }
+
+    /* Location Section */
+    .map-container {
+      position: relative;
+      padding-bottom: 40%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    .map-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: var(--primary-blue);
+      color: white;
+      padding: 4rem 5%;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .footer-content h3 {
+      margin-bottom: 1rem;
+    }
+
+    .social-container {
+      text-align: center; /* Center the heading and the social links */
+      margin-top: 2rem;   /* Adjust spacing as needed */
+    }
+
+/* Style for the social links container */
+    .social-links {
+      display: flex;
+      justify-content: center; /* Center the icons horizontally */
+      align-items: center;     /* Center the icons vertically */
+      gap: 1rem;               /* Space between each icon */
+      margin-top: 1rem;        /* Spacing between heading and icons */
+    }
+
+    @media (max-width: 904px) {
+      .social-links {
+        margin-left: auto; /* Center the container */
+        margin-right: auto; /* Center the container */
+        width: fit-content; 
+      }
+    }
+
+    .social-links a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;             /* Set a fixed width */
+      height: 40px;            /* Set a fixed height */
+      background-color: var(--primary-blue);  /* Optional: background for the icon box */
+      color: white;            /* Icon color */
+      border-radius: 50%;      /* Make it circular (optional) */
+      text-decoration: none;   /* Remove underline from links */
+      transition: background 0.3s;
+    }
+
+/* Optional: Hover effect for social icons */
+  .social-links a:hover {
+    background-color: var(--accent-gold);
+  }
+
+    /* New CSS class for fade-out effect */
+    .fade-out {
+      opacity: 0 !important;
+      transition: opacity 0.6s ease-out;
+    }
+
+    /* New CSS for the small footer map */
+    .footer-map {
+      width: 100%;
+      height: 150px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 5%;
+      }
+
+      nav {
+        display: none;
+      }
+
+      section {
+        padding: 6rem 5%;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      #hero-slider {
+        height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Bufét de Abogados Lexis</a>
+    
+  <!--
+    <nav class="desktop-nav">
+      <a href="abogados/abogados.html">Abogados Disponibles</a>
+      <a href="Consultas/Consultas.html">Consultas</a>
+    </nav>
+  
+    <div class="mobile-menu-icon">
+      <i class="fa fa-bars"></i>
+    </div>
+  
+    <div class="mobile-menu-box">
+      <a href="abogados/abogados.html">Abogados Disponibles</a>
+      <a href="Consultas/Consultas.html">Consultas</a>
+    </div>
+  -->  
+  </header>
+
+  <!-- Hero Slider Section -->
+  <section id="hero-slider">
+    <div class="slider">
+      <div class="slide active">
+        <img src="a.jpg" alt="Slide 1">
+      </div>
+      <div class="slide">
+        <img src="b.jpg" alt="Slide 2">
+      </div>
+      <div class="slide">
+        <img src="c.jpg" alt="Slide 3">
+      </div>
+      <div class="slide">
+        <img src="d.jpg" alt="Slide 4">
+      </div>
+      <button class="prev"><i class="fa fa-chevron-left"></i></button>
+      <button class="next"><i class="fa fa-chevron-right"></i></button>
+    </div>
+  </section>
+
+  <!-- Office Gallery Section -->
+  <section id="gallery" class="visible">
+    <h2>Nuestras Oficinas</h2>
+    <div class="gallery-grid">
+      <!-- Add gallery items here -->
+    </div>
+  </section>
+
+  <!-- Services Offered Section -->
+  <section id="services">
+    <h2>Nuestros Servicios Legales</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fa fa-user-friends"></i>
+        <h3>Derecho de Familia</h3>
+        <p>Asesoramiento en divorcios, custodia y acuerdos familiares para proteger sus intereses y bienestar familiar.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-balance-scale"></i>
+        <h3>Derecho Civil</h3>
+        <p>Asesoría legal en asuntos civiles, incluyendo contratos, herencias y derechos de propiedad.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-gavel"></i>
+        <h3>Derecho Penal</h3>
+        <p>Representación legal experta para garantizar que sus derechos sean protegidos en casos penales.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-briefcase"></i>
+        <h3>Derecho Laboral</h3>
+        <p>Asesoramiento y defensa en cuestiones laborales, protegiendo los derechos de empleados y empleadores.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-car"></i>
+        <h3>Tránsito</h3>
+        <p>Asistencia legal en casos de accidentes de tránsito, asegurando la compensación adecuada y la defensa de sus derechos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Contáctanos</h3>
+        <p>
+          <br>
+          Manabí 617 y Coronel<br>
+          📌 Ecuador, Guayaquil<br>
+          <br>
+          <strong>Teléfono/WhatsApp:</strong> 0981201707<br>
+        </p>
+      </div>
+      <!-- Updated Google Map Block with new coordinates -->
+      <div>
+        <h3>Nuestro Lugar</h3>
+        <iframe 
+          class="footer-map"
+          src="https://maps.google.com/maps?q=-2.200370,-79.886001&z=15&output=embed" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+      <!--
+      <div class="social-container">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      -->      
+    </div>
+    <p style="text-align: center; margin-top: 4rem;">© 2025 Justice Legal Partners. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Slider Functionality
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.slider .prev');
+    const nextButton = document.querySelector('.slider .next');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // Function to update slide visibility
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    // Show next slide
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    // Show previous slide
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    // Event listeners for navigation arrows
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+    // Optional: Auto-slide every 5 seconds (comment out if undesired)
+    // setInterval(nextSlide, 5000);
+
+    // New code: Fade out the "Nuestras Oficinas" section when the user scrolls 1cm (≈38px) from the top.
+    window.addEventListener('scroll', function() {
+      const gallerySection = document.getElementById('gallery');
+      // 38px is roughly equivalent to 1cm
+      if (window.scrollY >= 38) {
+        gallerySection.classList.add('fade-out');
+      } else {
+        gallerySection.classList.remove('fade-out');
+      }
+    });
+    
+    const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+    const mobileMenuBox = document.querySelector('.mobile-menu-box');
+
+    mobileMenuIcon.addEventListener('click', function() {
+      // Toggle the display of the mobile menu box
+      if (mobileMenuBox.style.display === 'block') {
+        mobileMenuBox.style.display = 'none';
+      } else {
+        mobileMenuBox.style.display = 'block';
+      }
+    });
+
+// (Optional) Hide the mobile menu when a link is clicked
+    mobileMenuBox.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBox.style.display = 'none';
+      });
+    });
+  </script>  
+</body>
+</html>
