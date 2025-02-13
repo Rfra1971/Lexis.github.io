@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,11 +14,14 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
+    /* Dark Mode Variables */
     :root {
-      --primary-blue: #2d3e50;
-      --accent-gold: #c5a47e;
-      --light-gray: #f5f5f5;
-      --dark-gray: #333;
+      --bg-color: #121212;
+      --surface-color: #1e1e1e;
+      --text-color: #e0e0e0;
+      --accent-gold: #d4af37;
+      --muted-border: #333;
+      --card-bg: #1e1e1e;
     }
 
     html {
@@ -26,8 +29,9 @@
     }
 
     body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
-      color: var(--dark-gray);
     }
 
     /* Header Styles */
@@ -36,83 +40,87 @@
       top: -10px;
       width: 100%;
       padding: 1.5rem 5%;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: var(--surface-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
       z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    /* Hide the mobile elements on larger screens */
-    .mobile-menu-icon,
-    .mobile-menu-box {
-      display: none;
+    /* Logo Container with image and text */
+    .logo-container {
+      display: flex;
+      align-items: center;
     }
 
-    /* Show hamburger icon and hide the desktop navigation on small screens */
-    @media (max-width: 768px) {
-      /* Hide desktop navigation */
-      .desktop-nav {
-        display: none;
-      }
-
-      /* Display the hamburger icon */
-      .mobile-menu-icon {
-        display: block;
-        font-size: 1.8rem;
-        color: var(--primary-blue);
-        cursor: pointer;
-      }
-
-      /* Style the mobile menu box */
-      .mobile-menu-box {
-        display: none; /* Hidden by default */
-        position: absolute;
-        top: 70px; /* Adjust based on your header height */
-        right: 5%;
-        background: white;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border-radius: 5px;
-        z-index: 1001;
-        overflow: hidden;
-      }
-
-      .mobile-menu-box a {
-        display: block;
-        padding: 1rem 1.5rem;
-        color: var(--dark-gray);
-        text-decoration: none;
-        border-bottom: 1px solid #f0f0f0;
-        transition: background 0.3s;
-      }
-
-      .mobile-menu-box a:last-child {
-        border-bottom: none;
-      }
-
-      .mobile-menu-box a:hover {
-        background: var(--light-gray);
-      }
+    .logo-container img {
+      width: 50px;
+      margin-right: 10px;
+      border-radius: 15px; /* Ajusta el valor para más o menos redondeo */
+      overflow: hidden; /* Asegura que el contenido no sobresalga */
     }
 
     .logo {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--primary-blue);
+      color: var(--accent-gold);
       text-decoration: none;
     }
 
     nav a {
       margin-left: 2rem;
       text-decoration: none;
-      color: var(--dark-gray);
+      color: var(--text-color);
       font-weight: 500;
       transition: color 0.3s;
     }
 
     nav a:hover {
       color: var(--accent-gold);
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-icon,
+    .mobile-menu-box {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-menu-icon {
+        display: block;
+        font-size: 1.8rem;
+        color: var(--text-color);
+        cursor: pointer;
+      }
+      .mobile-menu-box {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        background: var(--surface-color);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        border-radius: 5px;
+        z-index: 1001;
+        overflow: hidden;
+      }
+      .mobile-menu-box a {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px solid var(--muted-border);
+        transition: background 0.3s;
+      }
+      .mobile-menu-box a:last-child {
+        border-bottom: none;
+      }
+      .mobile-menu-box a:hover {
+        background: #2a2a2a;
+      }
     }
 
     /* Hero Slider Styles */
@@ -194,7 +202,7 @@
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 4rem;
-      color: var(--primary-blue);
+      color: var(--accent-gold);
     }
 
     /* Office Gallery */
@@ -227,19 +235,6 @@
       transform: scale(1.05);
     }
 
-    /* About Section */
-    .about {
-      background: var(--light-gray);
-      text-align: center;
-    }
-
-    .about-content {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
-
     /* Attorneys Grid */
     .attorneys-grid {
       display: grid;
@@ -249,9 +244,9 @@
 
     .attorney-card {
       padding: 2rem;
-      background: white;
+      background: var(--card-bg);
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
       text-align: center;
       transition: transform 0.3s;
     }
@@ -287,16 +282,16 @@
 
     .service-card {
       padding: 2rem;
-      background: white;
+      background: var(--card-bg);
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
     }
 
     .service-card i {
@@ -308,12 +303,12 @@
     .service-card h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: var(--primary-blue);
+      color: var(--accent-gold);
     }
 
     .service-card p {
       font-size: 1rem;
-      color: var(--dark-gray);
+      color: var(--text-color);
     }
 
     /* Location Section */
@@ -336,8 +331,8 @@
 
     /* Footer Styles */
     footer {
-      background: var(--primary-blue);
-      color: white;
+      background: var(--surface-color);
+      color: var(--text-color);
       padding: 4rem 5%;
     }
 
@@ -353,23 +348,22 @@
     }
 
     .social-container {
-      text-align: center; /* Center the heading and the social links */
-      margin-top: 2rem;   /* Adjust spacing as needed */
+      text-align: center;
+      margin-top: 2rem;
     }
 
-/* Style for the social links container */
     .social-links {
       display: flex;
-      justify-content: center; /* Center the icons horizontally */
-      align-items: center;     /* Center the icons vertically */
-      gap: 1rem;               /* Space between each icon */
-      margin-top: 1rem;        /* Spacing between heading and icons */
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
     @media (max-width: 904px) {
       .social-links {
-        margin-left: auto; /* Center the container */
-        margin-right: auto; /* Center the container */
+        margin-left: auto;
+        margin-right: auto;
         width: fit-content; 
       }
     }
@@ -378,27 +372,26 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 40px;             /* Set a fixed width */
-      height: 40px;            /* Set a fixed height */
-      background-color: var(--primary-blue);  /* Optional: background for the icon box */
-      color: white;            /* Icon color */
-      border-radius: 50%;      /* Make it circular (optional) */
-      text-decoration: none;   /* Remove underline from links */
+      width: 40px;
+      height: 40px;
+      background-color: var(--surface-color);
+      color: var(--text-color);
+      border-radius: 50%;
+      text-decoration: none;
       transition: background 0.3s;
     }
 
-/* Optional: Hover effect for social icons */
-  .social-links a:hover {
-    background-color: var(--accent-gold);
-  }
+    .social-links a:hover {
+      background-color: var(--accent-gold);
+    }
 
-    /* New CSS class for fade-out effect */
+    /* Fade-out Effect */
     .fade-out {
       opacity: 0 !important;
       transition: opacity 0.6s ease-out;
     }
 
-    /* New CSS for the small footer map */
+    /* Footer Map */
     .footer-map {
       width: 100%;
       height: 150px;
@@ -432,9 +425,11 @@
 </head>
 <body>
   <header>
-    <a href="#" class="logo">Bufét de Abogados Lexis</a>
-    
-  <!--
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Logo">
+      <a href="#" class="logo">Bufét de Abogados Lexis</a>
+    </div>
+    <!--
     <nav class="desktop-nav">
       <a href="abogados/abogados.html">Abogados Disponibles</a>
       <a href="Consultas/Consultas.html">Consultas</a>
@@ -448,7 +443,7 @@
       <a href="abogados/abogados.html">Abogados Disponibles</a>
       <a href="Consultas/Consultas.html">Consultas</a>
     </div>
-  -->  
+    -->
   </header>
 
   <!-- Hero Slider Section -->
@@ -543,7 +538,7 @@
           <a href="#"><i class="fab fa-facebook"></i></a>
         </div>
       </div>
-      -->      
+      -->
     </div>
     <p style="text-align: center; margin-top: 4rem;">© 2025 Justice Legal Partners. Todos los derechos reservados.</p>
   </footer>
@@ -605,10 +600,9 @@
     // Optional: Auto-slide every 5 seconds (comment out if undesired)
     // setInterval(nextSlide, 5000);
 
-    // New code: Fade out the "Nuestras Oficinas" section when the user scrolls 1cm (≈38px) from the top.
+    // Fade out the "Nuestras Oficinas" section when the user scrolls roughly 1cm (≈38px) from the top.
     window.addEventListener('scroll', function() {
       const gallerySection = document.getElementById('gallery');
-      // 38px is roughly equivalent to 1cm
       if (window.scrollY >= 38) {
         gallerySection.classList.add('fade-out');
       } else {
@@ -619,17 +613,12 @@
     const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
     const mobileMenuBox = document.querySelector('.mobile-menu-box');
 
-    mobileMenuIcon.addEventListener('click', function() {
-      // Toggle the display of the mobile menu box
-      if (mobileMenuBox.style.display === 'block') {
-        mobileMenuBox.style.display = 'none';
-      } else {
-        mobileMenuBox.style.display = 'block';
-      }
+    mobileMenuIcon && mobileMenuIcon.addEventListener('click', function() {
+      mobileMenuBox.style.display = mobileMenuBox.style.display === 'block' ? 'none' : 'block';
     });
 
-// (Optional) Hide the mobile menu when a link is clicked
-    mobileMenuBox.querySelectorAll('a').forEach(link => {
+    // (Optional) Hide the mobile menu when a link is clicked
+    mobileMenuBox && mobileMenuBox.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenuBox.style.display = 'none';
       });
