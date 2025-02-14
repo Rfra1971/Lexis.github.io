@@ -4,45 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lexis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     /* Base Styles */
+    :root {
+      --bg-color: #121212;
+      --primary-black: #000;
+      --surface-color: #1e1e1e;
+      --text-color: #e0e0e0;
+      --accent-gold: #D4AF37;
+      --light: #fff;
+      --muted-border: #333;
+      --dark-gray: #222;
+      --card-bg: #1e1e1e;
+    }
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
     }
-
-    /* Dark Mode Variables */
-    :root {
-      --bg-color: #121212;
-      --surface-color: #1e1e1e;
-      --text-color: #e0e0e0;
-      --accent-gold: #d4af37;
-      --muted-border: #333;
-      --card-bg: #1e1e1e;
-    }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
+      font-family: 'Montserrat', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-black);
     }
 
     /* Header Styles */
     header {
       position: fixed;
-      top: -10px;
+      top: 0;
+      left: 0;
       width: 100%;
       padding: 1.5rem 5%;
       background: var(--surface-color);
       box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      z-index: 1000;
+      z-index: 2000;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -71,8 +78,8 @@
     nav a {
       margin-left: 2rem;
       text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
+      color: var(--primary-white);
+      font-weight: 600;
       transition: color 0.3s;
     }
 
@@ -127,35 +134,32 @@
     #hero-slider {
       position: relative;
       width: 100%;
-      height: 80vh;
-      margin-top: 80px; /* To account for the fixed header */
+      height: 85vh;
       overflow: hidden;
     }
-
     .slider {
       width: 100%;
       height: 100%;
       position: relative;
     }
-
     .slide {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 110%;
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
-
     .slide.active {
       opacity: 1;
     }
-
     .slide img {
       width: 100%;
-      height: 100%;
+      height: 80%;
       object-fit: cover;
+      transform: scale(1.1);
+      filter: brightness(0.65);
     }
 
     /* Navigation Arrows */
@@ -262,53 +266,67 @@
     }
 
     /* Services Offered Section */
+    /* Services Section */
     #services {
-      padding: 3rem 5%;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease-out;
+      background: var(--light);
+      text-align: center;
+      padding-top: 1cm;
+      padding-bottom: 2cm;
     }
-
-    #services.visible {
-      opacity: 1;
-      transform: translateY(0);
+    #services h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      color: var(--primary-black);
     }
-
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
-
     .service-card {
+      background: var(--light);
+      border: 1px solid var(--translucent);
       padding: 2rem;
-      background: var(--card-bg);
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-
     .service-card i {
       font-size: 3rem;
       color: var(--accent-gold);
       margin-bottom: 1rem;
     }
-
     .service-card h3 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin-bottom: 1rem;
-      color: var(--accent-gold);
+      color: var(--primary-black);
     }
-
     .service-card p {
       font-size: 1rem;
-      color: var(--text-color);
+      color: var(--dark-gray);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .service-card .consult-btn {
+      background: var(--accent-gold);
+      color: var(--primary-black);
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card .consult-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
     /* Location Section */
@@ -331,58 +349,63 @@
 
     /* Footer Styles */
     footer {
-      background: var(--surface-color);
-      color: var(--text-color);
+      background: var(--primary-black);
+      color: var(--light);
       padding: 4rem 5%;
     }
-
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       align-items: start;
     }
-
     .footer-content h3 {
       margin-bottom: 1rem;
+      color: var(--accent-gold);
     }
-
+    .footer-content p, .footer-content a {
+      font-size: 0.95rem;
+      color: var(--light);
+      line-height: 1.5;
+    }
+    .footer-content a:hover {
+      color: var(--accent-gold);
+    }
     .social-container {
       text-align: center;
       margin-top: 2rem;
     }
-
     .social-links {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 1rem;
       margin-top: 1rem;
     }
-
-    @media (max-width: 904px) {
-      .social-links {
-        margin-left: auto;
-        margin-right: auto;
-        width: fit-content; 
-      }
-    }
-
     .social-links a {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 40px;
       height: 40px;
-      background-color: var(--surface-color);
-      color: var(--text-color);
-      border-radius: 50%;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .social-links a:hover {
       background-color: var(--accent-gold);
+      color: var(--primary-black);
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .social-links a:hover {
+      background-color: var(--light);
+      transform: scale(1.1);
+    }
+    .footer-map {
+      width: 100%;
+      height: 150px;
+      border: none;
+      border-radius: 8px;
+    }
+    footer p.copy {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
     }
 
     /* Fade-out Effect */
@@ -429,7 +452,6 @@
       <img src="logo.jpg" alt="Logo">
       <a href="#" class="logo">Bufét de Abogados Lexis</a>
     </div>
-    <!--
     <nav class="desktop-nav">
       <a href="abogados/abogados.html">Abogados Disponibles</a>
       <a href="Consultas/Consultas.html">Consultas</a>
@@ -443,23 +465,22 @@
       <a href="abogados/abogados.html">Abogados Disponibles</a>
       <a href="Consultas/Consultas.html">Consultas</a>
     </div>
-    -->
   </header>
 
   <!-- Hero Slider Section -->
   <section id="hero-slider">
     <div class="slider">
       <div class="slide active">
-        <img src="images/a.jpg" alt="Slide 1">
+        <img src="a.jpg" alt="Slide 1">
       </div>
       <div class="slide">
-        <img src="images/b.jpg" alt="Slide 2">
+        <img src="b.jpg" alt="Slide 2">
       </div>
       <div class="slide">
-        <img src="images/c.jpg" alt="Slide 3">
+        <img src="c.jpg" alt="Slide 3">
       </div>
       <div class="slide">
-        <img src="images/d.jpg" alt="Slide 4">
+        <img src="d.jpg" alt="Slide 4">
       </div>
       <button class="prev"><i class="fa fa-chevron-left"></i></button>
       <button class="next"><i class="fa fa-chevron-right"></i></button>
@@ -481,27 +502,32 @@
       <div class="service-card">
         <i class="fa fa-user-friends"></i>
         <h3>Derecho de Familia</h3>
-        <p>Asesoramiento en divorcios, custodia y acuerdos familiares para proteger sus intereses y bienestar familiar.</p>
-      </div>
-      <div class="service-card">
-        <i class="fa fa-balance-scale"></i>
-        <h3>Derecho Civil</h3>
-        <p>Asesoría legal en asuntos civiles, incluyendo contratos, herencias y derechos de propiedad.</p>
-      </div>
-      <div class="service-card">
-        <i class="fa fa-gavel"></i>
-        <h3>Derecho Penal</h3>
-        <p>Representación legal experta para garantizar que sus derechos sean protegidos en casos penales.</p>
-      </div>
-      <div class="service-card">
-        <i class="fa fa-briefcase"></i>
-        <h3>Derecho Laboral</h3>
-        <p>Asesoramiento y defensa en cuestiones laborales, protegiendo los derechos de empleados y empleadores.</p>
+        <p>Asesoramiento en adopciones, pensión alimenticias, modificaciones de pensiones, recuperación de menores y casos de violencia intrafamiliar.</p>
+        <button class="consult-btn" data-service="Familia" onclick="location.href='consultas/consultas.html';">Consultar</button>
       </div>
       <div class="service-card">
         <i class="fa fa-car"></i>
         <h3>Tránsito</h3>
-        <p>Asistencia legal en casos de accidentes de tránsito, asegurando la compensación adecuada y la defensa de sus derechos.</p>
+        <p>Impugnación de multas, trámites de vehículos, y patrocinios en accidentes de tránsito con lesiones o fatalidades.</p>
+        <button class="consult-btn" data-service="Tránsito" onclick="location.href='consultas/consultas.html';">Consultar</button>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-balance-scale"></i>
+        <h3>Derecho Civil</h3>
+        <p>Inventario de bienes, elaboración de contratos, minutas, y gestión de demandas civiles.</p>
+        <button class="consult-btn" data-service="Civil" onclick="location.href='consultas/consultas.html';">Consultar</button>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-gavel"></i>
+        <h3>Derecho Penal</h3>
+        <p>Defensa en causas penales, gestión de antecedentes, y tramitación de habeas corpus.</p>
+        <button class="consult-btn" data-service="Penal" onclick="location.href='consultas/consultas.html';">Consultar</button>
+      </div>
+      <div class="service-card">
+        <i class="fa fa-briefcase"></i>
+        <h3>Derecho Laboral</h3>
+        <p>Asesoría en conflictos laborales, despidos injustificados, y negociaciones colectivas.</p>
+        <button class="consult-btn" data-service="Laboral" onclick="location.href='consultas/consultas.html';">Consultar</button>
       </div>
     </div>
   </section>
@@ -509,16 +535,20 @@
   <!-- Footer Section -->
   <footer>
     <div class="footer-content">
-      <div>
-        <h3>Contáctanos</h3>
-        <p>
-          <br>
-          Manabí 617 y Coronel<br>
-          📌 Ecuador, Guayaquil<br>
-          <br>
-          <strong>Teléfono/WhatsApp:</strong> 0981201707<br>
-        </p>
-      </div>
+        <div>
+          <h3>Contáctanos</h3>
+          <p>
+            <br>
+            Manabí 616 Entre Cacíque Alvaréz y Coronel<br>
+            Guayaquil - Ecuador<br>
+            <br>
+            <strong>Abg. Rafael Tapia:</strong> +593 98 120 1707<br>
+            <strong>Abg. Alfonso Tapia:</strong> +593 99 798 6304<br>
+            <strong>Abg. Bradley Palacios:</strong> +593 99 137 9778<br>
+            <strong>Abg. Ángela Roballo:</strong> +593 99 642 3402<br><br>
+            <strong>📧</strong> abogadoslexis@hotmail.com
+          </p>
+        </div>
       <!-- Updated Google Map Block with new coordinates -->
       <div>
         <h3>Nuestro Lugar</h3>
@@ -529,16 +559,12 @@
           loading="lazy">
         </iframe>
       </div>
-      <!--
       <div class="social-container">
-        <h3>Follow Us</h3>
+        <h3>Síguenos</h3>
         <div class="social-links">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.facebook.com/share/18qsMZVcDA/"><i class="fab fa-facebook"></i></a>
         </div>
       </div>
-      -->
     </div>
     <p style="text-align: center; margin-top: 4rem;">© 2025 Justice Legal Partners. Todos los derechos reservados.</p>
   </footer>
@@ -573,29 +599,22 @@
     const nextButton = document.querySelector('.slider .next');
     let currentSlide = 0;
     const totalSlides = slides.length;
-
-    // Function to update slide visibility
     function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
       });
     }
-
-    // Show next slide
     function nextSlide() {
       currentSlide = (currentSlide + 1) % totalSlides;
       showSlide(currentSlide);
     }
-
-    // Show previous slide
     function prevSlide() {
       currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       showSlide(currentSlide);
     }
-
-    // Event listeners for navigation arrows
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
+    setInterval(nextSlide, 7000); // Auto-slide every 7 seconds
 
     // Optional: Auto-slide every 5 seconds (comment out if undesired)
     // setInterval(nextSlide, 5000);
