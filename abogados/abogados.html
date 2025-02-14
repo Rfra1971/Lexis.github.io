@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abogados de Oro</title>
+  <!-- Google Fonts: Playfair Display for headings, Lato for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Global Reset & Body */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #000, #222);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .selector-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .selector-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #D4AF37;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+      padding-bottom: 2cm;
+    }
+    /* Carousel Container */
+    .player-carousel {
+      position: relative;
+      width: 100%;
+      perspective: 1200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .carousel-wrapper {
+      position: relative;
+      width: 80%;
+      height: 450px;
+    }
+    /* Individual Card Styles */
+    .player-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 500px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s, opacity 0.6s;
+      cursor: pointer;
+    }
+    /* Active card (center) */
+    .player-card.active {
+      transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+      opacity: 1;
+      z-index: 3;
+    }
+    /* Previous card (left) */
+    .player-card.prev {
+      transform: translate(-150%, -50%) scale(0.8) rotateY(30deg);
+      opacity: 0.6;
+      z-index: 2;
+    }
+    /* Next card (right) */
+    .player-card.next {
+      transform: translate(50%, -50%) scale(0.8) rotateY(-30deg);
+      opacity: 0.6;
+      z-index: 2;
+    }
+    /* Hidden cards (non-adjacent) */
+    .player-card.hidden {
+      opacity: 0;
+      z-index: 1;
+      transform: translate(-50%, -50%) scale(0.5) rotateY(0deg);
+    }
+    /* Card Flip Inner Container */
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+    /* Flip effect when active card is clicked */
+    .player-card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    /* Front & Back Sides */
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    /* Front Side */
+    .card-front {
+      z-index: 2;
+    }
+    .player-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+    .player-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .player-info {
+      padding: 1rem;
+      flex: 1;
+    }
+    .player-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #D4AF37;
+      margin-bottom: 0.5rem;
+    }
+    .player-info p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .skill {
+      background: #D4AF37;
+      color: #000;
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+    /* Back Side */
+    .card-back {
+      transform: rotateY(180deg);
+      padding: 1rem;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #111;
+    }
+    .card-back h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #D4AF37;
+      margin-bottom: 0.5rem;
+    }
+    .card-back p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    /* Flip Buttons */
+    .flip-btn {
+      background: transparent;
+      border: 2px solid #D4AF37;
+      color: #D4AF37;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      align-self: center;
+      margin-top: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    .flip-btn:hover {
+      background: #D4AF37;
+      color: #000;
+    }
+    /* Navigation Buttons */
+    .nav-button {
+      background: none;
+      border: none;
+      color: #D4AF37;
+      font-size: 2.5rem;
+      cursor: pointer;
+      z-index: 4;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .nav-button:hover {
+      transform: scale(1.2);
+      color: #fff;
+    }
+    .nav-button.prev { margin-right: 10px; }
+    .nav-button.next { margin-left: 10px; }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .carousel-wrapper {
+        width: 100%;
+        height: 380px;
+      }
+      .player-card {
+        width: 250px;
+        height: 350px;
+      }
+      .player-card.prev, .player-card.next {
+        transform: translate(-50%, -50%) scale(0.7) rotateY(0deg);
+        opacity: 0.4;
+      }
+      .nav-button {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="selector-header">
+      <h1>Conoce a Nuestros Abogados</h1>
+    </div>
+    <div class="player-carousel">
+      <button class="nav-button prev">&#10094;</button>
+      <div class="carousel-wrapper">
+        <!-- Cards will be dynamically injected here -->
+      </div>
+      <button class="nav-button next">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    // Array of "lawyer" objects with extra details for the flip effect
+    const players = [
+      {
+        name: "Abg. Rafael Tapia",
+        image: "1.jpg",
+        description: "Especializado en Derecho Constitucional (E.C.).",
+        skills: ["Tránsito", "Penal", "laboral", "Violencia Intrafamiliar"],
+        details: "Contáctalo: 📱 +593 98 120 1707"
+      },
+      {
+        name: "Abg. Alfonso Tapia - Mágister",
+        image: "2.jpg",
+        description: "Magister en Derecho Procesal por la Universidad Ecotec y Universidad Europea Miguel de Cervantes.",
+        skills: ["Derecho Civíl y Mercantíl", "Inquilinato", "Tránsito", "Derecho Administrativo y Contencioso Administrativo"],
+        details: "Contáctalo: 📱 +593 99 798 6304"
+      },
+      {
+        name: "Abg. Bradley Palacios",
+        image: "3.jpg",
+        description: "Diplomado en Criminologia y Ciencias Forenses por la Universidad de Tumbes-Perú.",
+        skills: ["Derecho de Familia", "adopción nacional e internacional", "Laboral"],
+        details: "Contáctalo: 📱 +593 99 137 9778"
+      },
+      {
+        name: "Abg. Ángela Roballo",
+        image: "4.jpg",
+        description: "Magister en Derecho Procesal por la Universidad Ecotec y Universidad Europea Miguel de Cervantes.",
+        skills: ["Societario", "Tributario", "Contencioso Tributario y Familia"],
+        details: "Contáctalo: 📱 +593 99 642 3402"
+      }
+    ];
+
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    let currentPlayer = 0;
+
+    // Generate cards dynamically
+    players.forEach((player, index) => {
+      const card = document.createElement('div');
+      card.classList.add('player-card');
+      card.dataset.index = index;
+
+      const cardInner = document.createElement('div');
+      cardInner.classList.add('card-inner');
+
+      // Front side of the card
+      const cardFront = document.createElement('div');
+      cardFront.classList.add('card-front');
+
+      const imageDiv = document.createElement('div');
+      imageDiv.classList.add('player-image');
+      const img = document.createElement('img');
+      img.src = player.image;
+      img.alt = player.name;
+      imageDiv.appendChild(img);
+
+      const infoDiv = document.createElement('div');
+      infoDiv.classList.add('player-info');
+      const nameElem = document.createElement('h2');
+      nameElem.textContent = player.name;
+      const descElem = document.createElement('p');
+      descElem.textContent = player.description;
+      const skillsList = document.createElement('ul');
+      skillsList.classList.add('skills-list');
+      player.skills.forEach(skill => {
+        const li = document.createElement('li');
+        li.classList.add('skill');
+        li.textContent = skill;
+        skillsList.appendChild(li);
+      });
+
+      // Flip button to reveal more details
+      const flipBtnFront = document.createElement('button');
+      flipBtnFront.classList.add('flip-btn');
+      flipBtnFront.textContent = 'Más detalles';
+      infoDiv.appendChild(nameElem);
+      infoDiv.appendChild(descElem);
+      infoDiv.appendChild(skillsList);
+      infoDiv.appendChild(flipBtnFront);
+
+      cardFront.appendChild(imageDiv);
+      cardFront.appendChild(infoDiv);
+
+      // Back side of the card (extra info)
+      const cardBack = document.createElement('div');
+      cardBack.classList.add('card-back');
+      const backTitle = document.createElement('h3');
+      backTitle.textContent = player.name;
+      const backDesc = document.createElement('p');
+      backDesc.textContent = player.details;
+      const flipBtnBack = document.createElement('button');
+      flipBtnBack.classList.add('flip-btn');
+      flipBtnBack.textContent = 'Volver';
+
+      cardBack.appendChild(backTitle);
+      cardBack.appendChild(backDesc);
+      cardBack.appendChild(flipBtnBack);
+
+      // Assemble card inner structure
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      card.appendChild(cardInner);
+      carouselWrapper.appendChild(card);
+
+      // Flip event listeners (only for active card)
+      flipBtnFront.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (card.classList.contains('active')) {
+          card.classList.add('flipped');
+        }
+      });
+      flipBtnBack.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.remove('flipped');
+      });
+    });
+
+    // Function to update card classes based on currentPlayer index
+    function updateCarousel() {
+      const cards = document.querySelectorAll('.player-card');
+      cards.forEach(card => {
+        card.classList.remove('prev', 'active', 'next', 'hidden', 'flipped');
+        const index = parseInt(card.dataset.index);
+        if (index === currentPlayer) {
+          card.classList.add('active');
+        } else if (index === (currentPlayer - 1 + players.length) % players.length) {
+          card.classList.add('prev');
+        } else if (index === (currentPlayer + 1) % players.length) {
+          card.classList.add('next');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+    updateCarousel();
+
+    // Navigation buttons functionality
+    document.querySelector('.nav-button.prev').addEventListener('click', () => {
+      currentPlayer = (currentPlayer - 1 + players.length) % players.length;
+      updateCarousel();
+    });
+    document.querySelector('.nav-button.next').addEventListener('click', () => {
+      currentPlayer = (currentPlayer + 1) % players.length;
+      updateCarousel();
+    });
+
+    // Auto-rotate carousel every 7 seconds
+    let autoRotate = setInterval(() => {
+      currentPlayer = (currentPlayer + 1) % players.length;
+      updateCarousel();
+    }, 7000);
+
+    // Pause auto-rotation when hovering over the carousel
+    carouselWrapper.addEventListener('mouseenter', () => {
+      clearInterval(autoRotate);
+    });
+    carouselWrapper.addEventListener('mouseleave', () => {
+      autoRotate = setInterval(() => {
+        currentPlayer = (currentPlayer + 1) % players.length;
+        updateCarousel();
+      }, 7000);
+    });
+  </script>
+</body>
+</html>
