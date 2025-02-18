@@ -3,420 +3,427 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consultas Legales Exclusivas</title>
-  <!-- Using Google Fonts for a refined look -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <title>Abogados de Oro</title>
+  <!-- Google Fonts: Playfair Display for headings, Lato for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="logo.jpg" type="image/jpeg" />
   <style>
-    /* Global Reset */
+    /* Global Reset & Body */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #1c1c1c, #4a4a4a);
-      color: #f7f7f7;
-      padding: 20px;
+      background: linear-gradient(135deg, #000, #222);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .selector-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .selector-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #D4AF37;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+      padding-bottom: 2cm;
+    }
+    /* Carousel Container */
+    .player-carousel {
+      position: relative;
+      width: 100%;
+      perspective: 1200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .carousel-wrapper {
+      position: relative;
+      width: 80%;
+      height: 450px;
+    }
+    /* Individual Card Styles */
+    .player-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 500px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s, opacity 0.6s;
+      cursor: pointer;
+    }
+    /* Active card (center) */
+    .player-card.active {
+      transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+      opacity: 1;
+      z-index: 3;
+    }
+    /* Previous card (left) */
+    .player-card.prev {
+      transform: translate(-150%, -50%) scale(0.8) rotateY(30deg);
+      opacity: 0.6;
+      z-index: 2;
+    }
+    /* Next card (right) */
+    .player-card.next {
+      transform: translate(50%, -50%) scale(0.8) rotateY(-30deg);
+      opacity: 0.6;
+      z-index: 2;
+    }
+    /* Hidden cards (non-adjacent) */
+    .player-card.hidden {
+      opacity: 0;
+      z-index: 1;
+      transform: translate(-50%, -50%) scale(0.5) rotateY(0deg);
+    }
+    /* Card Flip Inner Container */
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+    /* Flip effect when active card is clicked */
+    .player-card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    /* Front & Back Sides */
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
-    
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
+    /* Front Side */
+    .card-front {
+      z-index: 2;
     }
-    
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: #d4af37; /* Gold */
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    header h2 {
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: #fff;
-    }
-    
-    .inquiry-form {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      border-radius: 10px;
-      padding: 30px 40px;
-      max-width: 500px;
+    .player-image {
       width: 100%;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      position: relative;
-      z-index: 1;
+      height: 200px;
       overflow: hidden;
     }
-    
-    /* Animated overlay inside the form for a dynamic effect */
-    .inquiry-form::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, transparent 20%, rgba(212, 175, 55, 0.1) 80%);
-      animation: rotate 20s linear infinite;
-      z-index: -1;
-    }
-    
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    .inquiry-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #d4af37;
-    }
-    
-    .inquiry-form input[type="text"],
-    .inquiry-form input[type="email"],
-    .inquiry-form input[type="tel"],
-    .inquiry-form textarea {
+    .player-image img {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      border-radius: 5px;
-      font-size: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      color: #f7f7f7;
-      transition: border-color 0.3s, background 0.3s;
+      height: 100%;
+      object-fit: cover;
+    }
+    .player-info {
+      padding: 1rem;
+      flex: 1;
     }
     
-    .inquiry-form input[type="text"]:focus,
-    .inquiry-form input[type="email"]:focus,
-    .inquiry-form input[type="tel"]:focus,
-    .inquiry-form textarea:focus {
-      border-color: #d4af37;
-      background: rgba(255, 255, 255, 0.2);
-      outline: none;
+    @media (min-width: 768px) {
+    .player-info {
+        padding: 0.1cm;
+        flex: 1;
+        width: 8cm;
     }
-    
-    .inquiry-form button {
-      background: #d4af37;
-      color: #1c1c1c;
-      padding: 14px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      width: 100%;
+}
+
+    .player-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #D4AF37;
+      margin-bottom: 0.5rem;
+    }
+    .player-info p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .skill {
+      background: #D4AF37;
+      color: #000;
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+      font-size: 0.7rem;
       font-weight: bold;
     }
-    
-    .inquiry-form button:hover {
-      background: #b6952e;
-      transform: scale(1.02);
-    }
-    
-    /* Warning Message */
-    .warning-message {
-      background: rgba(255, 0, 0, 0.1);
-      border: 1px solid #ff0000;
-      color: #ff4d4d;
-      padding: 10px 15px;
-      border-radius: 4px;
-      margin-bottom: 15px;
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .warning-message button {
-      background: transparent;
-      border: none;
-      font-size: 1.2rem;
-      color: #ff4d4d;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-    
-    /* Modal Popup for success message */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.8);
-      align-items: center;
+    /* Back Side */
+    .card-back {
+      transform: rotateY(180deg);
+      padding: 1rem;
       justify-content: center;
-    }
-    
-    .modal-content {
-      background: #1c1c1c;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
+      align-items: center;
       text-align: center;
-      position: relative;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-      animation: slideDown 0.5s ease-out;
+      background: #111;
     }
-    
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .modal-content h3 {
+    .card-back h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: #d4af37;
-      margin-bottom: 15px;
+      font-size: 1.6rem;
+      color: #D4AF37;
+      margin-bottom: 0.5rem;
     }
-    
-    .modal-content p {
-      font-size: 1rem;
-      color: #f7f7f7;
-      margin-bottom: 20px;
+    .card-back p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
     }
-    
-    .modal-close {
-      background: #d4af37;
-      color: #1c1c1c;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+    /* Flip Buttons */
+    .flip-btn {
+      background: transparent;
+      border: 2px solid #D4AF37;
+      color: #D4AF37;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
+      align-self: center;
+      margin-top: auto;
+      transition: background 0.3s, color 0.3s;
     }
-    
-    .modal-close:hover {
-      background: #b6952e;
+    .flip-btn:hover {
+      background: #D4AF37;
+      color: #000;
     }
-    
-    /* Confetti canvas (for WOW effect on success) */
-    .confetti {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1500;
+    /* Navigation Buttons */
+    .nav-button {
+      background: none;
+      border: none;
+      color: #D4AF37;
+      font-size: 2.5rem;
+      cursor: pointer;
+      z-index: 4;
+      transition: transform 0.3s, color 0.3s;
     }
+    .nav-button:hover {
+      transform: scale(1.2);
+      color: #fff;
+    }
+    .nav-button.prev { margin-right: 10px; }
+    .nav-button.next { margin-left: 10px; }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .carousel-wrapper {
+        width: 100%;
+        height: 380px;
+      }
+      .player-card {
+        width: 250px;
+        height: 350px;
+      }
+      .player-card.prev, .player-card.next {
+        transform: translate(-50%, -50%) scale(0.7) rotateY(0deg);
+        opacity: 0.4;
+      }
+      .nav-button {
+        font-size: 2rem;
+      }
+      .player-info {
+        padding: 0.1cm;
+        flex: 1;
+        width: 8cm;
+      }
+      .player-info h2 {
+        font-size: 1.5rem;
+      }
+      .player-info p {
+        padding-right: 1.3cm;
+      }
+    }  
   </style>
 </head>
 <body>
-  <header>
-    <h1>Consulta Legal Exclusiva</h1>
-    <h2>Lexis &amp; Bufete de Abogados Asociados</h2>
-  </header>
-
-  <!-- Update the form to work with Formspree -->
-  <div class="inquiry-form">
-    <!-- Warning Message -->
-    <div id="warningMessage" class="warning-message">
-      <span id="warningText">Por favor, complete todos los campos obligatorios.</span>
-      <button id="closeWarning">&times;</button>
+  <div class="container">
+    <div class="selector-header">
+      <h1>Conoce a Nuestros Abogados</h1>
     </div>
-    <form id="legalInquiryForm" action="https://formspree.io/f/meoepnrq" method="POST" novalidate>
-      <label for="name">Nombre Completo <span style="color: #ff4d4d">*</span></label>
-      <input type="text" id="name" name="name" placeholder="Tu Nombre Completo" />
-
-      <label for="email">Correo electrónico (Asegúrese de que la dirección ingresada sea correcta) <span style="color: #ff4d4d">*</span></label>
-      <!-- Changed name to "Email" as per Formspree example -->
-      <input type="email" id="email" name="Email" placeholder="Email@ejemplo.com" />
-
-      <label for="phone">Número Telefónico (Opcional)</label>
-      <input type="tel" id="phone" name="phone" placeholder="+593 99 123 4567" />
-
-      <label for="inquiry">Consulta Legal <span style="color: #ff4d4d">*</span></label>
-      <textarea id="inquiry" name="inquiry" rows="5" placeholder="Describe tu problema legal"></textarea>
-
-      <button type="submit">Enviar Consulta</button>
-    </form>
-  </div>
-
-  <!-- Modal Popup for Successful Submission -->
-  <div id="popupModal" class="modal">
-    <div class="modal-content">
-      <h3>¡Gracias!</h3>
-      <p>Nos pondremos en contacto contigo vía correo o teléfono muy pronto.</p>
-      <button class="modal-close" id="closeModal">Cerrar</button>
+    <div class="player-carousel">
+      <button class="nav-button prev">&#10094;</button>
+      <div class="carousel-wrapper">
+        <!-- Cards will be dynamically injected here -->
+      </div>
+      <button class="nav-button next">&#10095;</button>
     </div>
   </div>
-
-  <!-- Confetti Canvas for WOW effect -->
-  <canvas id="confettiCanvas" class="confetti"></canvas>
 
   <script>
-    const form = document.getElementById("legalInquiryForm");
-    const warningMessage = document.getElementById("warningMessage");
-    const closeWarningBtn = document.getElementById("closeWarning");
-    let warningTimeout;
-
-    form.addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent default form submission
-      
-      // Retrieve field values
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const inquiry = document.getElementById("inquiry").value.trim();
-      
-      // Validate required fields
-      if (!name || !email || !inquiry) {
-        showWarning("Por favor, complete todos los campos obligatorios.");
-        return;
+    // Array of "lawyer" objects with extra details for the flip effect
+    const players = [
+      {
+        name: "Abg. Rafael Tapia",
+        image: "1.jpg",
+        description: "Especializado en Derecho Constitucional (E.C.).",
+        skills: ["Tránsito", "Penal", "laboral", "Violencia Intrafamiliar"],
+        details: "Contáctalo: 📱 +593 98 120 1707"
+      },
+      {
+        name: "Abg. Alfonso Tapia - Mágister",
+        image: "2.jpg",
+        description: "Magister en Derecho Procesal por la Universidad Ecotec y Universidad Europea Miguel de Cervantes.",
+        skills: ["Derecho Civíl y Mercantíl", "Inquilinato", "Tránsito", "Derecho Administrativo y Contencioso Administrativo"],
+        details: "Contáctalo: 📱 +593 99 798 6304"
+      },
+      {
+        name: "Abg. Bradley Palacios",
+        image: "3.jpg",
+        description: "Diplomado en Criminologia y Ciencias Forenses por la Universidad de Tumbes-Perú.",
+        skills: ["Derecho de Familia", "adopción nacional e internacional", "Laboral"],
+        details: "Contáctalo: 📱 +593 99 137 9778"
+      },
+      {
+        name: "Abg. Ángela Roballo",
+        image: "4.jpg",
+        description: "Magister en Derecho Procesal por la Universidad Ecotec y Universidad Europea Miguel de Cervantes.",
+        skills: ["Societario", "Tributario", "Contencioso Tributario y Familia"],
+        details: "Contáctalo: 📱 +593 99 642 3402"
       }
-      
-      // Submit form data to Formspree using fetch
-      fetch(form.action, {
-        method: form.method,
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: new FormData(form)
-      })
-      .then(response => {
-        if (response.ok) {
-          document.getElementById("popupModal").style.display = "flex";
-          form.reset();
-          launchConfetti();
-        } else {
-          response.json().then(data => {
-            if (data.hasOwnProperty("errors")) {
-              showWarning(data["errors"].map(error => error["message"]).join(", "));
-            } else {
-              showWarning("Oops! There was a problem submitting your form");
-            }
-          });
+    ];
+
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    let currentPlayer = 0;
+
+    // Generate cards dynamically
+    players.forEach((player, index) => {
+      const card = document.createElement('div');
+      card.classList.add('player-card');
+      card.dataset.index = index;
+
+      const cardInner = document.createElement('div');
+      cardInner.classList.add('card-inner');
+
+      // Front side of the card
+      const cardFront = document.createElement('div');
+      cardFront.classList.add('card-front');
+
+      const imageDiv = document.createElement('div');
+      imageDiv.classList.add('player-image');
+      const img = document.createElement('img');
+      img.src = player.image;
+      img.alt = player.name;
+      imageDiv.appendChild(img);
+
+      const infoDiv = document.createElement('div');
+      infoDiv.classList.add('player-info');
+      const nameElem = document.createElement('h2');
+      nameElem.textContent = player.name;
+      const descElem = document.createElement('p');
+      descElem.textContent = player.description;
+      const skillsList = document.createElement('ul');
+      skillsList.classList.add('skills-list');
+      player.skills.forEach(skill => {
+        const li = document.createElement('li');
+        li.classList.add('skill');
+        li.textContent = skill;
+        skillsList.appendChild(li);
+      });
+
+      // Flip button to reveal more details
+      const flipBtnFront = document.createElement('button');
+      flipBtnFront.classList.add('flip-btn');
+      flipBtnFront.textContent = 'Más detalles';
+      infoDiv.appendChild(nameElem);
+      infoDiv.appendChild(descElem);
+      infoDiv.appendChild(skillsList);
+      infoDiv.appendChild(flipBtnFront);
+
+      cardFront.appendChild(imageDiv);
+      cardFront.appendChild(infoDiv);
+
+      // Back side of the card (extra info)
+      const cardBack = document.createElement('div');
+      cardBack.classList.add('card-back');
+      const backTitle = document.createElement('h3');
+      backTitle.textContent = player.name;
+      const backDesc = document.createElement('p');
+      backDesc.textContent = player.details;
+      const flipBtnBack = document.createElement('button');
+      flipBtnBack.classList.add('flip-btn');
+      flipBtnBack.textContent = 'Volver';
+
+      cardBack.appendChild(backTitle);
+      cardBack.appendChild(backDesc);
+      cardBack.appendChild(flipBtnBack);
+
+      // Assemble card inner structure
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      card.appendChild(cardInner);
+      carouselWrapper.appendChild(card);
+
+      // Flip event listeners (only for active card)
+      flipBtnFront.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (card.classList.contains('active')) {
+          card.classList.add('flipped');
         }
-      })
-      .catch(error => {
-        showWarning("Oops! There was a problem submitting your form");
+      });
+      flipBtnBack.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.remove('flipped');
       });
     });
 
-    function showWarning(message) {
-      clearTimeout(warningTimeout);
-      document.getElementById("warningText").innerText = message;
-      warningMessage.style.display = "flex";
-      warningTimeout = setTimeout(() => { warningMessage.style.display = "none"; }, 5000);
-    }
-    
-    closeWarningBtn.addEventListener("click", function() {
-      warningMessage.style.display = "none";
-      clearTimeout(warningTimeout);
-    });
-    
-    document.getElementById("closeModal").addEventListener("click", function() {
-      document.getElementById("popupModal").style.display = "none";
-    });
-    
-    window.addEventListener("click", function(event) {
-      const modal = document.getElementById("popupModal");
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-    
-    // Confetti Animation Functionality
-    function launchConfetti() {
-      const canvas = document.getElementById('confettiCanvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      const confettiCount = 150;
-      const confetti = [];
-      
-      for (let i = 0; i < confettiCount; i++) {
-        confetti.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 4,
-          d: Math.random() * confettiCount,
-          color: i % 2 === 0 ? "#d4af37" : "#ffffff",
-          tilt: Math.floor(Math.random() * 10) - 10,
-          tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
-          tiltAngle: 0
-        });
-      }
-      
-      let angle = 0;
-      let frame = 0;
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < confettiCount; i++) {
-          const c = confetti[i];
-          ctx.beginPath();
-          ctx.lineWidth = c.r;
-          ctx.strokeStyle = c.color;
-          ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
-          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
-          ctx.stroke();
-        }
-        update();
-      }
-      
-      function update() {
-        angle += 0.01;
-        for (let i = 0; i < confettiCount; i++) {
-          const c = confetti[i];
-          c.tiltAngle += c.tiltAngleIncremental;
-          c.y += (Math.cos(angle + c.d) + 3 + c.r/2) / 2;
-          c.x += Math.sin(angle);
-          c.tilt = Math.sin(c.tiltAngle) * 15;
-          
-          // Reset confetti that fall beyond the canvas
-          if (c.y > canvas.height) {
-            confetti[i] = {
-              x: Math.random() * canvas.width,
-              y: -20,
-              r: c.r,
-              d: c.d,
-              color: c.color,
-              tilt: c.tilt,
-              tiltAngleIncremental: c.tiltAngleIncremental,
-              tiltAngle: c.tiltAngle
-            };
-          }
-        }
-      }
-      
-      function animateConfetti() {
-        frame++;
-        draw();
-        if (frame < 200) {
-          requestAnimationFrame(animateConfetti);
+    // Function to update card classes based on currentPlayer index
+    function updateCarousel() {
+      const cards = document.querySelectorAll('.player-card');
+      cards.forEach(card => {
+        card.classList.remove('prev', 'active', 'next', 'hidden', 'flipped');
+        const index = parseInt(card.dataset.index);
+        if (index === currentPlayer) {
+          card.classList.add('active');
+        } else if (index === (currentPlayer - 1 + players.length) % players.length) {
+          card.classList.add('prev');
+        } else if (index === (currentPlayer + 1) % players.length) {
+          card.classList.add('next');
         } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          card.classList.add('hidden');
         }
-      }
-      animateConfetti();
+      });
     }
-    
-    // Adjust canvas size on window resize
-    window.addEventListener('resize', () => {
-      const canvas = document.getElementById('confettiCanvas');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    updateCarousel();
+
+    // Navigation buttons functionality
+    document.querySelector('.nav-button.prev').addEventListener('click', () => {
+      currentPlayer = (currentPlayer - 1 + players.length) % players.length;
+      updateCarousel();
+    });
+    document.querySelector('.nav-button.next').addEventListener('click', () => {
+      currentPlayer = (currentPlayer + 1) % players.length;
+      updateCarousel();
+    });
+
+    // Auto-rotate carousel every 7 seconds
+    let autoRotate = setInterval(() => {
+      currentPlayer = (currentPlayer + 1) % players.length;
+      updateCarousel();
+    }, 7000);
+
+    // Pause auto-rotation when hovering over the carousel
+    carouselWrapper.addEventListener('mouseenter', () => {
+      clearInterval(autoRotate);
+    });
+    carouselWrapper.addEventListener('mouseleave', () => {
+      autoRotate = setInterval(() => {
+        currentPlayer = (currentPlayer + 1) % players.length;
+        updateCarousel();
+      }, 7000);
     });
   </script>
 </body>
