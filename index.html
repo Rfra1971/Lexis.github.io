@@ -41,6 +41,79 @@
       color: var(--primary-black);
     }
 
+/* WhatsApp Popup Styles */
+.whatsapp-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
+  background-color: var(--accent-gold);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 3000;
+}
+
+.whatsapp-popup .whatsapp-icon {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--accent-gold);
+  color: var(--primary-black);
+}
+
+.whatsapp-popup .whatsapp-icon i {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  color: green;
+}
+
+.whatsapp-popup .whatsapp-icon span {
+  font-size: 1rem;
+}
+
+.whatsapp-popup .lawyer-accordion {
+  display: none;
+  background-color: var(--light);
+  color: var(--primary-black);
+}
+
+.whatsapp-popup .lawyer-entry {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  border-top: 1px solid #ddd;
+  transition: background 0.3s;
+}
+
+.whatsapp-popup .lawyer-entry:hover {
+  background-color: #f0f0f0;
+}
+
+.whatsapp-popup .lawyer-entry img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.whatsapp-popup .lawyer-info h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.whatsapp-popup .lawyer-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: green;
+}
+
+
+
     /* Header Styles */
     header {
       position: fixed;
@@ -197,12 +270,6 @@
     }
 
     /* Common Section Styles */
-    section {
-      padding: 0.1rem 5%;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease-out;
-    }
 
     section.visible {
       opacity: 1;
@@ -429,6 +496,7 @@
       border-radius: 8px;
     }
 
+
     /* Responsive Design */
     @media (max-width: 768px) {
       header {
@@ -454,6 +522,47 @@
         font-size: 2.3rem;
       }
     }
+
+      /* seccion */
+      #lexis-consultores {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background-color: #f9f9f9; /* Color de fondo */
+      border: 1px solid #ccc; /* Borde opcional */
+    }
+
+    .logo2 {
+      margin-left: 200px;
+      max-width: 100px; /* Ajusta el tamaño del logo */
+      margin-right: 20px; /* Espacio entre el logo y el texto */
+    }
+
+    p {
+      font-size: 19px; /* Tamaño de fuente del texto */
+      color: #333; /* Color del texto */
+    }
+
+  @media (max-width: 768px) {
+    #lexis-consultores {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background-color: #f9f9f9; /* Color de fondo */
+      border: 1px solid #ccc; /* Borde opcional */
+    }
+
+    .logo2 {
+      margin-left: 0px;
+      max-width: 100px; /* Ajusta el tamaño del logo */
+      margin-right: 20px; /* Espacio entre el logo y el texto */
+    }
+
+    p {
+      font-size: 16px; /* Tamaño de fuente del texto */
+      color: #333; /* Color del texto */
+    }
+  }
   </style>
 </head>
 <body>
@@ -499,46 +608,79 @@
 
   <!-- Office Gallery Section -->
   <section id="gallery" class="visible">
-    <h2>Nuestras Oficinas</h2>
+    <br><h2>Consultas gratuitas!</h2>
     <div class="gallery-grid">
       <!-- Add gallery items here -->
     </div>
   </section>
 
+  <div id="lexis-consultores" style="background-color: white; padding-top: 20px; padding-bottom: 20px;"><br>
+    <img src="logo.jpg" alt="Logo de Lexis Consultores" class="logo2">
+    <p id="1" style="padding-right: 20px;">Estudio Jurídico Lexis, tiene especialistas legales de amplia trayectoria en el ámbito público y privado.</p><br>
+  </div>
+
   <!-- Services Offered Section -->
   <section id="services">
-    <h2>Nuestros Servicios Legales</h2>
+    <br><br><h2 style="align-items: center;">Servicios Legales</h2><br><br>
     <div class="services-grid">
       <div class="service-card">
         <i class="fa fa-user-friends"></i>
-        <h3>Derecho de Familia</h3>
-        <p>Asesoramiento en adopciones, pensión alimenticias, modificaciones de pensiones, recuperación de menores y casos de violencia intrafamiliar.</p>
+        <h3 style="margin-top: 10px;">Derecho de Familia</h3>
+        <ul style="color: black; padding-left: 20px;">
+          <li style="margin-bottom: 10px;">Asesoramiento en adopciones</li>
+          <li style="margin-bottom: 10px;">Pensión alimenticias</li>
+          <li style="margin-bottom: 10px;">Modificaciones de pensiones</li>
+          <li style="margin-bottom: 10px;">Recuperación de menores</li>
+          <li style="margin-bottom: 10px;">Violencia intrafamiliar</li>
+          <br>
+        </ul>
         <button class="consult-btn" data-service="Familia" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
       <div class="service-card">
         <i class="fa fa-car"></i>
         <h3>Tránsito</h3>
-        <p>Impugnación de multas, trámites de vehículos, y patrocinios en accidentes de tránsito con lesiones o fatalidades.</p>
+        <ul style="color: black; padding-left: 20px;">
+          <li style="margin-bottom: 10px;">Impugnación de multas</li>
+          <li style="margin-bottom: 10px;">Trámites de vehículos</li>
+          <li style="margin-bottom: 10px;">Patrocinios en accidentes de tránsito con lesiones o fatalidades</li>
+        </ul>
         <button class="consult-btn" data-service="Tránsito" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
       <div class="service-card">
         <i class="fa fa-balance-scale"></i>
         <h3>Derecho Civil</h3>
-        <p>Inventario de bienes, elaboración de contratos, minutas, y gestión de demandas civiles.</p>
+        <ul style="color: black; padding-left: 20px;">
+          <li style="margin-bottom: 10px;">Inventario de bienes</li>
+          <li style="margin-bottom: 10px;">Elaboración de contratos</li>
+          <li style="margin-bottom: 10px;">Minutas</li>
+          <li style="margin-bottom: 10px;">Gestión de demandas civiles</li>
+          <br>
+        </ul>
         <button class="consult-btn" data-service="Civil" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
       <div class="service-card">
         <i class="fa fa-gavel"></i>
         <h3>Derecho Penal</h3>
-        <p>Defensa en causas penales, gestión de antecedentes, y tramitación de habeas corpus.</p>
+        <ul style="color: black; padding-left: 20px;">
+          <li style="margin-bottom: 10px;">Defensa en causas penales</li>
+          <li style="margin-bottom: 10px;">Gestión de antecedentes</li>
+          <li style="margin-bottom: 10px;">Tramitación de habeas corpus</li>
+        </ul>
+        <br>
         <button class="consult-btn" data-service="Penal" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
       <div class="service-card">
         <i class="fa fa-briefcase"></i>
         <h3>Derecho Laboral</h3>
-        <p>Asesoría en conflictos laborales, despidos injustificados, y negociaciones colectivas.</p>
+        <ul style="color: black; padding-left: 20px;">
+          <li style="margin-bottom: 10px;">Asesoría en conflictos laborales</li>
+          <li style="margin-bottom: 10px;">Despidos injustificados</li>
+          <li style="margin-bottom: 10px;">Negociaciones colectivas</li>
+        </ul>
+        <br>
         <button class="consult-btn" data-service="Laboral" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
+      <br>
     </div>
   </section>
 
@@ -578,6 +720,45 @@
     </div>
     <p style="text-align: center; margin-top: 4rem;">© 2025 Justice Legal Partners. Todos los derechos reservados.</p>
   </footer>
+
+    
+<!-- WhatsApp Pop-Up -->
+<div class="whatsapp-popup">
+  <div class="whatsapp-icon" onclick="toggleAccordion()">
+    <i class="fab fa-whatsapp"></i>
+    <span id="mensaje" onclick="cambiarTexto()">Haz clic para contactarnos!</span>
+  </div>
+  <div class="lawyer-accordion">
+    <a href="https://api.whatsapp.com/send?phone=0981201707" class="lawyer-entry">
+      <img src="abogados/1.jpg" alt="Rafael Tapia">
+      <div class="lawyer-info">
+        <h4>Abg. Rafael Tapia</h4>
+        <p>Disponible</p>
+      </div>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=0997986304" class="lawyer-entry">
+      <img src="abogados/2.jpg" alt="Alfonso Tapia">
+      <div class="lawyer-info">
+        <h4>Abg. Alfonso Tapia</h4>
+        <p>Disponible</p>
+      </div>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=0991379778" class="lawyer-entry">
+      <img src="abogados/3.jpg" alt="Bradley Palacios">
+      <div class="lawyer-info">
+        <h4>Abg. Bradley Palacios</h4>
+        <p>Disponible</p>
+      </div>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=0996423402" class="lawyer-entry">
+      <img src="abogados/4.jpg" alt="Angela Roballo">
+      <div class="lawyer-info">
+        <h4>Abg. Angela Roballo</h4>
+        <p>Disponible</p>
+      </div>
+    </a>
+  </div>
+</div>
 
   <script>
     // Intersection Observer for scroll animations
@@ -632,7 +813,7 @@
     // Fade out the "Nuestras Oficinas" section when the user scrolls roughly 1cm (≈38px) from the top.
     window.addEventListener('scroll', function() {
       const gallerySection = document.getElementById('gallery');
-      if (window.scrollY >= 38) {
+      if (window.scrollY >= 900) {
         gallerySection.classList.add('fade-out');
       } else {
         gallerySection.classList.remove('fade-out');
@@ -652,6 +833,22 @@
         mobileMenuBox.style.display = 'none';
       });
     });
+
+    function toggleAccordion() {
+    var accordion = document.querySelector('.whatsapp-popup .lawyer-accordion');
+      accordion.style.display = (accordion.style.display === 'block') ? 'none' : 'block';
+    }
+
+// Cerrar el acordeón al hacer clic fuera de él
+    document.addEventListener('click', function(event) {
+    var whatsappPopup = document.querySelector('.whatsapp-popup');
+    var accordion = document.querySelector('.whatsapp-popup .lawyer-accordion');
+
+  // Verifica si el clic fue fuera del popup y del acordeón
+  if (!whatsappPopup.contains(event.target) && accordion.style.display === 'block') {
+    accordion.style.display = 'none'; // Cierra el acordeón
+    }
+  });
   </script>  
 </body>
 </html>
