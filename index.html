@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="qpE2RqoIgzlbdp24-NZYCtwpI2ZhZChhi_CdMSkJso4" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estudio Juridico LEXIS - Servicios Legales de Calidad</title>
-  <meta name="description" content="En Estudio Jurídico Lexis ofrecemos servicios legales de calidad en diversas áreas del derecho. Contáctanos para asesoría legal o Consulta.">
+  <meta name="google-site-verification" content="qpE2RqoIgzlbdp24-NZYCtwpI2ZhZChhi_CdMSkJso4" />
+  <title>Estudio Jurídico Lexis - Servicios Legales de Calidad</title>
+  <meta name="description" content="En Estudio Jurídico Lexis ofrecemos servicios legales de calidad en diversas áreas del derecho. Contáctanos para asesoría legal o consulta." />
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://elestudiojuridicolexiss.github.io/">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Estudio Jurídico Lexis - Servicios Legales de Calidad">
+  <meta property="og:description" content="En Estudio Jurídico Lexis ofrecemos servicios legales de calidad en diversas áreas del derecho.">
+  <meta property="og:url" content="https://elestudiojuridicolexiss.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_EC">
+
+  <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="icon" href="logo.jpg" type="image/jpeg" />
+
+  <!-- Structured Data for Legal Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Estudio Juridico Lexis",
+    "url": "httpshttps://elestudiojuridicolexiss.github.io/",
+    "description": "En Estudio Juridico Lexis ofrecemos servicios legales de calidad en diversas áreas del derecho. Contáctanos para asesoría legal o consulta.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Manabí 616 Entre Cacíque Alvaréz y Coronel",
+      "addressLocality": "Guayaquil",
+      "addressCountry": "EC"
+    },
+    "telephone": "+593981201707"
+  }
+  </script>
+  
+  <!-- Inline CSS -->
   <style>
     /* Base Styles */
     :root {
@@ -22,15 +53,8 @@
       --dark-gray: #222;
       --card-bg: #1e1e1e;
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--bg-color);
@@ -42,546 +66,132 @@
       font-family: 'Playfair Display', serif;
       color: var(--primary-black);
     }
-
-/* WhatsApp Popup Styles */
-.whatsapp-popup {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 300px;
-  background-color: var(--accent-gold);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  overflow: hidden;
-  font-family: 'Montserrat', sans-serif;
-  z-index: 3000;
-}
-
-.whatsapp-popup .whatsapp-icon {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  background-color: var(--accent-gold);
-  color: var(--primary-black);
-}
-
-.whatsapp-popup .whatsapp-icon i {
-  font-size: 1.5rem;
-  margin-right: 8px;
-  color: green;
-}
-
-.whatsapp-popup .whatsapp-icon span {
-  font-size: 1rem;
-}
-
-.whatsapp-popup .lawyer-accordion {
-  display: none;
-  background-color: var(--light);
-  color: var(--primary-black);
-}
-
-.whatsapp-popup .lawyer-entry {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  text-decoration: none;
-  border-top: 1px solid #ddd;
-  transition: background 0.3s;
-}
-
-.whatsapp-popup .lawyer-entry:hover {
-  background-color: #f0f0f0;
-}
-
-.whatsapp-popup .lawyer-entry img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-  object-fit: cover;
-}
-
-.whatsapp-popup .lawyer-info h4 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.whatsapp-popup .lawyer-info p {
-  margin: 0;
-  font-size: 0.8rem;
-  color: green;
-}
-
-
-
+    
+    /* WhatsApp Popup Styles */
+    .whatsapp-popup { position: fixed; bottom: 20px; left: 20px; width: 300px; background-color: var(--accent-gold); border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); overflow: hidden; font-family: 'Montserrat', sans-serif; z-index: 3000; }
+    .whatsapp-popup .whatsapp-icon { display: flex; align-items: center; padding: 10px; cursor: pointer; background-color: var(--accent-gold); color: var(--primary-black); }
+    .whatsapp-popup .whatsapp-icon i { font-size: 1.5rem; margin-right: 8px; color: green; }
+    .whatsapp-popup .whatsapp-icon span { font-size: 1rem; }
+    .whatsapp-popup .lawyer-accordion { display: none; background-color: var(--light); color: var(--primary-black); }
+    .whatsapp-popup .lawyer-entry { display: flex; align-items: center; padding: 10px; text-decoration: none; border-top: 1px solid #ddd; transition: background 0.3s; }
+    .whatsapp-popup .lawyer-entry:hover { background-color: #f0f0f0; }
+    .whatsapp-popup .lawyer-entry img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover; }
+    .whatsapp-popup .lawyer-info h4 { margin: 0; font-size: 1rem; }
+    .whatsapp-popup .lawyer-info p { margin: 0; font-size: 0.8rem; color: green; }
+    
     /* Header Styles */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 1.5rem 5%;
-      background: var(--surface-color);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      z-index: 2000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Logo Container with image and text */
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      width: 50px;
-      margin-right: 10px;
-      border-radius: 15px; /* Ajusta el valor para más o menos redondeo */
-      overflow: hidden; /* Asegura que el contenido no sobresalga */
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      text-decoration: none;
-    }
-
-    nav a {
-      margin-left: 2rem;
-      text-decoration: none;
-      color: var(--primary-white);
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent-gold);
-    }
-
+    header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5%; background: var(--surface-color); box-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 2000; display: flex; justify-content: space-between; align-items: center; }
+    .logo-container { display: flex; align-items: center; }
+    .logo-container img { width: 50px; margin-right: 10px; border-radius: 15px; overflow: hidden; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--accent-gold); text-decoration: none; }
+    nav a { margin-left: 2rem; text-decoration: none; color: var(--text-color); font-weight: 600; transition: color 0.3s; }
+    nav a:hover { color: var(--accent-gold); }
+    
     /* Mobile Navigation */
-    .mobile-menu-icon,
-    .mobile-menu-box {
-      display: none;
-    }
-
+    .mobile-menu-icon, .mobile-menu-box { display: none; }
     @media (max-width: 868px) {
-      .desktop-nav {
-        display: none;
-      }
-      .mobile-menu-icon {
-        display: block;
-        font-size: 1.8rem;
-        color: var(--text-color);
-        cursor: pointer;
-      }
-      .mobile-menu-box {
-        display: none;
-        position: absolute;
-        top: 70px;
-        right: 5%;
-        background: var(--surface-color);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        border-radius: 5px;
-        z-index: 1001;
-        overflow: hidden;
-      }
-      .mobile-menu-box a {
-        display: block;
-        padding: 1rem 1.5rem;
-        color: var(--text-color);
-        text-decoration: none;
-        border-bottom: 1px solid var(--muted-border);
-        transition: background 0.3s;
-      }
-      .mobile-menu-box a:last-child {
-        border-bottom: none;
-      }
-      .mobile-menu-box a:hover {
-        background: #2a2a2a;
-      }
-      .logo {
-        font-size: 1.4rem;
-      }
-      .slider button {
-        display: none;
-      }
+      .desktop-nav { display: none; }
+      .mobile-menu-icon { display: block; font-size: 1.8rem; color: var(--text-color); cursor: pointer; }
+      .mobile-menu-box { display: none; position: absolute; top: 70px; right: 5%; background: var(--surface-color); box-shadow: 0 5px 15px rgba(0,0,0,0.5); border-radius: 5px; z-index: 1001; overflow: hidden; }
+      .mobile-menu-box a { display: block; padding: 1rem 1.5rem; color: var(--text-color); text-decoration: none; border-bottom: 1px solid var(--muted-border); transition: background 0.3s; }
+      .mobile-menu-box a:last-child { border-bottom: none; }
+      .mobile-menu-box a:hover { background: #2a2a2a; }
+      .logo { font-size: 1.4rem; }
+      .slider button { display: none; }
     }
-
+    
     /* Hero Slider Styles */
-    #hero-slider {
-      position: relative;
-      width: 100%;
-      height: 85vh;
-      overflow: hidden;
-    }
-    .slider {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 110%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .slide.active {
-      opacity: 1;
-    }
-    .slide img {
-      width: 100%;
-      height: 90%;
-      object-fit: cover;
-      transform: scale(1.1);
-      filter: brightness(0.65);
-    }
-
+    #hero-slider { position: relative; width: 100%; height: 85vh; overflow: hidden; }
+    .slider { width: 100%; height: 100%; position: relative; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 110%; opacity: 0; transition: opacity 1s ease-in-out; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 90%; object-fit: cover; transform: scale(1.1); filter: brightness(0.65); }
+    
     /* Navigation Arrows */
-    .slider button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      z-index: 10;
-    }
-
-    .slider button:hover {
-      background: rgba(0, 0, 0, 0.6);
-    }
-
-    .slider .prev {
-      left: 20px;
-    }
-
-    .slider .next {
-      right: 20px;
-    }
-
+    .slider button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.4); border: none; color: #fff; font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer; transition: background 0.3s; z-index: 10; }
+    .slider button:hover { background: rgba(0, 0, 0, 0.6); }
+    .slider .prev { left: 20px; }
+    .slider .next { right: 20px; }
+    
     /* Common Section Styles */
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent-gold);
-    }
-
+    section.visible { opacity: 1; transform: translateY(0); }
+    h2 { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-gold); }
+    
     /* Office Gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      transition: transform 0.3s;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 8px; transition: transform 0.3s; }
+    .gallery-item:hover { transform: translateY(-5px); }
+    .gallery-item img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    
     /* Attorneys Grid */
-    .attorneys-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .attorney-card {
-      padding: 2rem;
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .attorney-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .attorney-card i {
-      font-size: 2.5rem;
-      color: var(--accent-gold);
-      margin-bottom: 1rem;
-    }
-
+    .attorneys-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .attorney-card { padding: 2rem; background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-align: center; transition: transform 0.3s; }
+    .attorney-card:hover { transform: translateY(-10px); }
+    .attorney-card i { font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem; }
+    
     /* Services Offered Section */
-    /* Services Section */
-    #services {
-      background: var(--light);
-      text-align: center;
-      padding-top: 1cm;
-      padding-bottom: 2cm;
-    }
-    #services h2 {
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      color: var(--primary-black);
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .service-card {
-      background: var(--light);
-      border: 1px solid var(--translucent);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    .service-card i {
-      font-size: 3rem;
-      color: var(--accent-gold);
-      margin-bottom: 1rem;
-    }
-    .service-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--primary-black);
-    }
-    .service-card p {
-      font-size: 1rem;
-      color: var(--dark-gray);
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-    .service-card .consult-btn {
-      background: var(--accent-gold);
-      color: var(--primary-black);
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .service-card .consult-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
+    #services { background: var(--light); text-align: center; padding-top: 1cm; padding-bottom: 2cm; }
+    #services h2 { font-size: 2.8rem; margin-bottom: 2rem; color: var(--primary-black); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .service-card { background: var(--light); border: 1px solid rgba(0,0,0,0.1); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+    .service-card:hover { transform: translateY(-10px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .service-card i { font-size: 3rem; color: var(--accent-gold); margin-bottom: 1rem; }
+    .service-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-black); }
+    .service-card p, .service-card li { font-size: 1rem; color: var(--dark-gray); margin-bottom: 1.5rem; }
+    .service-card .consult-btn { background: var(--accent-gold); color: var(--primary-black); border: none; padding: 0.7rem 1.2rem; border-radius: 30px; font-weight: 600; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .service-card .consult-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    
     /* Location Section */
-    .map-container {
-      position: relative;
-      padding-bottom: 40%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 10px;
-      margin-top: 2rem;
-    }
-
-    .map-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
+    .map-container { position: relative; padding-bottom: 40%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 2rem; }
+    .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    
     /* Footer Styles */
-    footer {
-      background: var(--primary-black);
-      color: var(--light);
-      padding: 4rem 5%;
-    }
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      align-items: start;
-    }
-    .footer-content h3 {
-      margin-bottom: 1rem;
-      color: var(--accent-gold);
-    }
-    .footer-content p, .footer-content a {
-      font-size: 0.95rem;
-      color: var(--light);
-      line-height: 1.5;
-    }
-    .footer-content a:hover {
-      color: var(--accent-gold);
-    }
-    .social-container {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .social-links a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      background-color: var(--accent-gold);
-      color: var(--primary-black);
-      border-radius: 50%;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .social-links a:hover {
-      background-color: var(--light);
-      transform: scale(1.1);
-    }
-    .footer-map {
-      width: 100%;
-      height: 150px;
-      border: none;
-      border-radius: 8px;
-    }
-    footer p.copy {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-    }
-
+    footer { background: var(--primary-black); color: var(--light); padding: 4rem 5%; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; align-items: start; }
+    .footer-content h3 { margin-bottom: 1rem; color: var(--accent-gold); }
+    .footer-content p, .footer-content a { font-size: 0.95rem; color: var(--light); line-height: 1.5; }
+    .footer-content a:hover { color: var(--accent-gold); }
+    .social-container { text-align: center; margin-top: 2rem; }
+    .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+    .social-links a { display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; background-color: var(--accent-gold); color: var(--primary-black); border-radius: 50%; transition: background 0.3s, transform 0.3s; }
+    .social-links a:hover { background-color: var(--light); transform: scale(1.1); }
+    .footer-map { width: 100%; height: 150px; border: none; border-radius: 8px; }
+    footer p.copy { text-align: center; margin-top: 2rem; font-size: 0.9rem; }
+    
     /* Fade-out Effect */
-    .fade-out {
-      opacity: 0 !important;
-      transition: opacity 0.6s ease-out;
-    }
-
-    /* Footer Map */
-    .footer-map {
-      width: 100%;
-      height: 150px;
-      border: none;
-      border-radius: 8px;
-    }
-
-
-    /* Responsive Design */
+    .fade-out { opacity: 0 !important; transition: opacity 0.6s ease-out; }
+    
+    /* seccion */
+    #lexis-consultores { display: flex; align-items: center; padding: 20px; background-color: #f9f9f9; border: 1px solid #ccc; }
+    .logo2 { margin-left: 200px; max-width: 100px; margin-right: 20px; }
+    p { font-size: 19px; color: #333; }
+    
     @media (max-width: 768px) {
-      header {
-        padding: 1rem 5%;
-      }
-
-      nav {
-        display: none;
-      }
-
-      section {
-        padding: 1rem 5%;
-      }
-
-      h2 {
-        font-size: 2rem;
-      }
-
-      #hero-slider {
-        height: 50vh;
-      }
-      #services h2 {
-        font-size: 2.3rem;
-      }
+      #lexis-consultores { margin-left: 0; }
+      .logo2 { margin-left: 0; max-width: 100px; margin-right: 20px; }
+      p { font-size: 16px; color: #333; }
+      header { padding: 1rem 5%; }
+      section { padding: 1rem 5%; }
+      h2 { font-size: 2rem; }
+      #hero-slider { height: 50vh; }
+      #services h2 { font-size: 2.3rem; }
     }
-
-      /* seccion */
-      #lexis-consultores {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      background-color: #f9f9f9; /* Color de fondo */
-      border: 1px solid #ccc; /* Borde opcional */
-    }
-
-    .logo2 {
-      margin-left: 200px;
-      max-width: 100px; /* Ajusta el tamaño del logo */
-      margin-right: 20px; /* Espacio entre el logo y el texto */
-    }
-
-    p {
-      font-size: 19px; /* Tamaño de fuente del texto */
-      color: #333; /* Color del texto */
-    }
-
-  @media (max-width: 768px) {
-    #lexis-consultores {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      background-color: #f9f9f9; /* Color de fondo */
-      border: 1px solid #ccc; /* Borde opcional */
-    }
-
-    .logo2 {
-      margin-left: 0px;
-      max-width: 100px; /* Ajusta el tamaño del logo */
-      margin-right: 20px; /* Espacio entre el logo y el texto */
-    }
-
-    p {
-      font-size: 16px; /* Tamaño de fuente del texto */
-      color: #333; /* Color del texto */
-    }
-  }
   </style>
 </head>
 <body>
   <header>
     <div class="logo-container">
-      <img src="logo.jpg" alt="Logo">
+      <img src="logo.jpg" alt="Logo de Estudio Jurídico Lexis">
       <a href="#" class="logo">Estudio Jurídico Lexis</a>
     </div>
     <nav class="desktop-nav">
       <a href="abogados/abogados.html">Abogados Disponibles</a>
       <a href="Consultas/Consultas.html">Consultas</a>
     </nav>
-  
     <div class="mobile-menu-icon">
       <i class="fa fa-bars"></i>
     </div>
-  
     <div class="mobile-menu-box">
       <a href="abogados/abogados.html">Abogados Disponibles</a>
       <a href="Consultas/Consultas.html">Consultas</a>
@@ -592,16 +202,16 @@
   <section id="hero-slider">
     <div class="slider">
       <div class="slide active">
-        <img src="images/aa.jpg" alt="Slide 1">
+        <img src="images/aa.jpg" alt="Oficina de Estudio Jurídico Lexis - Slide 1">
       </div>
       <div class="slide">
-        <img src="images/bb.jpg" alt="Slide 2">
+        <img src="images/bb.jpg" alt="Oficina de Estudio Jurídico Lexis - Slide 2">
       </div>
       <div class="slide">
-        <img src="images/cc.jpg" alt="Slide 3">
+        <img src="images/cc.jpg" alt="Oficina de Estudio Jurídico Lexis - Slide 3">
       </div>
       <div class="slide">
-        <img src="images/dd.jpg" alt="Slide 4">
+        <img src="images/dd.jpg" alt="Oficina de Estudio Jurídico Lexis - Slide 4">
       </div>
       <button class="prev"><i class="fa fa-chevron-left"></i></button>
       <button class="next"><i class="fa fa-chevron-right"></i></button>
@@ -612,29 +222,28 @@
   <section id="gallery" class="visible">
     <br><h2>Consultas gratuitas!</h2>
     <div class="gallery-grid">
-      <!-- Add gallery items here -->
+      <!-- Gallery items go here -->
     </div>
   </section>
 
   <div id="lexis-consultores" style="background-color: white; padding-top: 20px; padding-bottom: 20px;"><br>
     <img src="logo.jpg" alt="Logo de Lexis Consultores" class="logo2">
-    <p id="1" style="padding-right: 20px;">Estudio Jurídico Lexis, tiene especialistas legales de amplia trayectoria en el ámbito público y privado.</p><br>
+    <p id="1" style="padding-right: 20px;">Estudio Jurídico Lexis tiene especialistas legales de amplia trayectoria en el ámbito público y privado.</p><br>
   </div>
 
   <!-- Services Offered Section -->
   <section id="services">
-    <br><br><h2 style="align-items: center;">Servicios Legales</h2><br><br>
+    <br><br><h2>Servicios Legales</h2><br><br>
     <div class="services-grid">
       <div class="service-card">
         <i class="fa fa-user-friends"></i>
-        <h3 style="margin-top: 10px;">Derecho de Familia</h3>
+        <h3>Derecho de Familia</h3>
         <ul style="color: black; padding-left: 20px;">
-          <li style="margin-bottom: 10px;">Asesoramiento en adopciones</li>
-          <li style="margin-bottom: 10px;">Pensión alimenticias</li>
-          <li style="margin-bottom: 10px;">Modificaciones de pensiones</li>
-          <li style="margin-bottom: 10px;">Recuperación de menores</li>
-          <li style="margin-bottom: 10px;">Violencia intrafamiliar</li>
-          <br>
+          <li>Asesoramiento en adopciones</li>
+          <li>Pensión alimenticias</li>
+          <li>Modificaciones de pensiones</li>
+          <li>Recuperación de menores</li>
+          <li>Violencia intrafamiliar</li>
         </ul>
         <button class="consult-btn" data-service="Familia" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
@@ -642,9 +251,9 @@
         <i class="fa fa-car"></i>
         <h3>Tránsito</h3>
         <ul style="color: black; padding-left: 20px;">
-          <li style="margin-bottom: 10px;">Impugnación de multas</li>
-          <li style="margin-bottom: 10px;">Trámites de vehículos</li>
-          <li style="margin-bottom: 10px;">Patrocinios en accidentes de tránsito con lesiones o fatalidades</li>
+          <li>Impugnación de multas</li>
+          <li>Trámites de vehículos</li>
+          <li>Patrocinios en accidentes de tránsito con lesiones o fatalidades</li>
         </ul>
         <button class="consult-btn" data-service="Tránsito" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
@@ -652,11 +261,10 @@
         <i class="fa fa-balance-scale"></i>
         <h3>Derecho Civil</h3>
         <ul style="color: black; padding-left: 20px;">
-          <li style="margin-bottom: 10px;">Inventario de bienes</li>
-          <li style="margin-bottom: 10px;">Elaboración de contratos</li>
-          <li style="margin-bottom: 10px;">Minutas</li>
-          <li style="margin-bottom: 10px;">Gestión de demandas civiles</li>
-          <br>
+          <li>Inventario de bienes</li>
+          <li>Elaboración de contratos</li>
+          <li>Minutas</li>
+          <li>Gestión de demandas civiles</li>
         </ul>
         <button class="consult-btn" data-service="Civil" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
@@ -664,46 +272,41 @@
         <i class="fa fa-gavel"></i>
         <h3>Derecho Penal</h3>
         <ul style="color: black; padding-left: 20px;">
-          <li style="margin-bottom: 10px;">Defensa en causas penales</li>
-          <li style="margin-bottom: 10px;">Gestión de antecedentes</li>
-          <li style="margin-bottom: 10px;">Tramitación de habeas corpus</li>
+          <li>Defensa en causas penales</li>
+          <li>Gestión de antecedentes</li>
+          <li>Tramitación de habeas corpus</li>
         </ul>
-        <br>
         <button class="consult-btn" data-service="Penal" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
       <div class="service-card">
         <i class="fa fa-briefcase"></i>
         <h3>Derecho Laboral</h3>
         <ul style="color: black; padding-left: 20px;">
-          <li style="margin-bottom: 10px;">Asesoría en conflictos laborales</li>
-          <li style="margin-bottom: 10px;">Despidos injustificados</li>
-          <li style="margin-bottom: 10px;">Negociaciones colectivas</li>
+          <li>Asesoría en conflictos laborales</li>
+          <li>Despidos injustificados</li>
+          <li>Negociaciones colectivas</li>
         </ul>
-        <br>
         <button class="consult-btn" data-service="Laboral" onclick="location.href='Consultas/Consultas.html';">Consultar</button>
       </div>
-      <br>
     </div>
   </section>
 
   <!-- Footer Section -->
   <footer>
     <div class="footer-content">
-        <div>
-          <h3>Contáctanos</h3>
-          <p>
-            <br>
-            Manabí 616 Entre Cacíque Alvaréz y Coronel<br>
-            Guayaquil - Ecuador<br>
-            <br>
-            <strong>Abg. Rafael Tapia:</strong> +593 98 120 1707<br>
-            <strong>Abg. Alfonso Tapia:</strong> +593 99 798 6304<br>
-            <strong>Abg. Bradley Palacios:</strong> +593 99 137 9778<br>
-            <strong>Abg. Ángela Roballo:</strong> +593 99 642 3402<br><br>
-            <strong>📧</strong> abogadoslexis@hotmail.com
-          </p>
-        </div>
-      <!-- Updated Google Map Block with new coordinates -->
+      <div>
+        <h3>Contáctanos</h3>
+        <p>
+          <br>
+          Manabí 616 Entre Cacíque Alvaréz y Coronel<br>
+          Guayaquil - Ecuador<br><br>
+          <strong>Abg. Rafael Tapia:</strong> +593 98 120 1707<br>
+          <strong>Abg. Alfonso Tapia:</strong> +593 99 798 6304<br>
+          <strong>Abg. Bradley Palacios:</strong> +593 99 137 9778<br>
+          <strong>Abg. Ángela Roballo:</strong> +593 99 642 3402<br><br>
+          <strong>📧</strong> abogadoslexis@hotmail.com
+        </p>
+      </div>
       <div>
         <h3>Nuestro Lugar</h3>
         <iframe 
@@ -716,51 +319,50 @@
       <div class="social-container">
         <h3>Síguenos</h3>
         <div class="social-links">
-            <a href="https://www.facebook.com/share/18qsMZVcDA/"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.facebook.com/share/18qsMZVcDA/"><i class="fab fa-facebook"></i></a>
         </div>
       </div>
     </div>
-    <p style="text-align: center; margin-top: 4rem;">© 2025 Justice Legal Partners. Todos los derechos reservados.</p>
+    <p class="copy">© 2025 Justice Legal Partners. Todos los derechos reservados.</p>
   </footer>
 
-    
-<!-- WhatsApp Pop-Up -->
-<div class="whatsapp-popup">
-  <div class="whatsapp-icon" onclick="toggleAccordion()">
-    <i class="fab fa-whatsapp"></i>
-    <span id="mensaje" onclick="cambiarTexto()">Haz clic para contactarnos!</span>
+  <!-- WhatsApp Pop-Up -->
+  <div class="whatsapp-popup">
+    <div class="whatsapp-icon" onclick="toggleAccordion()">
+      <i class="fab fa-whatsapp"></i>
+      <span id="mensaje" onclick="cambiarTexto()">Haz clic para contactarnos!</span>
+    </div>
+    <div class="lawyer-accordion">
+      <a href="https://api.whatsapp.com/send?phone=0981201707" class="lawyer-entry">
+        <img src="abogados/1.jpg" alt="Abg. Rafael Tapia">
+        <div class="lawyer-info">
+          <h4>Abg. Rafael Tapia</h4>
+          <p>Disponible</p>
+        </div>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=0997986304" class="lawyer-entry">
+        <img src="abogados/2.jpg" alt="Abg. Alfonso Tapia">
+        <div class="lawyer-info">
+          <h4>Abg. Alfonso Tapia</h4>
+          <p>Disponible</p>
+        </div>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=0991379778" class="lawyer-entry">
+        <img src="abogados/3.jpg" alt="Abg. Bradley Palacios">
+        <div class="lawyer-info">
+          <h4>Abg. Bradley Palacios</h4>
+          <p>Disponible</p>
+        </div>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=0996423402" class="lawyer-entry">
+        <img src="abogados/4.jpg" alt="Abg. Ángela Roballo">
+        <div class="lawyer-info">
+          <h4>Abg. Ángela Roballo</h4>
+          <p>Disponible</p>
+        </div>
+      </a>
+    </div>
   </div>
-  <div class="lawyer-accordion">
-    <a href="https://api.whatsapp.com/send?phone=0981201707" class="lawyer-entry">
-      <img src="abogados/1.jpg" alt="Rafael Tapia">
-      <div class="lawyer-info">
-        <h4>Abg. Rafael Tapia</h4>
-        <p>Disponible</p>
-      </div>
-    </a>
-    <a href="https://api.whatsapp.com/send?phone=0997986304" class="lawyer-entry">
-      <img src="abogados/2.jpg" alt="Alfonso Tapia">
-      <div class="lawyer-info">
-        <h4>Abg. Alfonso Tapia</h4>
-        <p>Disponible</p>
-      </div>
-    </a>
-    <a href="https://api.whatsapp.com/send?phone=0991379778" class="lawyer-entry">
-      <img src="abogados/3.jpg" alt="Bradley Palacios">
-      <div class="lawyer-info">
-        <h4>Abg. Bradley Palacios</h4>
-        <p>Disponible</p>
-      </div>
-    </a>
-    <a href="https://api.whatsapp.com/send?phone=0996423402" class="lawyer-entry">
-      <img src="abogados/4.jpg" alt="Angela Roballo">
-      <div class="lawyer-info">
-        <h4>Abg. Angela Roballo</h4>
-        <p>Disponible</p>
-      </div>
-    </a>
-  </div>
-</div>
 
   <script>
     // Intersection Observer for scroll animations
@@ -771,18 +373,13 @@
         }
       });
     }, { threshold: 0.1 });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
 
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
     });
 
@@ -793,26 +390,15 @@
     let currentSlide = 0;
     const totalSlides = slides.length;
     function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
     }
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
-    }
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(currentSlide);
-    }
+    function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; showSlide(currentSlide); }
+    function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; showSlide(currentSlide); }
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
-    setInterval(nextSlide, 7000); // Auto-slide every 7 seconds
+    setInterval(nextSlide, 7000);
 
-    // Optional: Auto-slide every 5 seconds (comment out if undesired)
-    // setInterval(nextSlide, 5000);
-
-    // Fade out the "Nuestras Oficinas" section when the user scrolls roughly 1cm (≈38px) from the top.
+    // Fade out the gallery section when user scrolls down
     window.addEventListener('scroll', function() {
       const gallerySection = document.getElementById('gallery');
       if (window.scrollY >= 900) {
@@ -821,36 +407,27 @@
         gallerySection.classList.remove('fade-out');
       }
     });
-    
+
     const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
     const mobileMenuBox = document.querySelector('.mobile-menu-box');
-
     mobileMenuIcon && mobileMenuIcon.addEventListener('click', function() {
       mobileMenuBox.style.display = mobileMenuBox.style.display === 'block' ? 'none' : 'block';
     });
-
-    // (Optional) Hide the mobile menu when a link is clicked
     mobileMenuBox && mobileMenuBox.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBox.style.display = 'none';
-      });
+      link.addEventListener('click', () => { mobileMenuBox.style.display = 'none'; });
     });
 
     function toggleAccordion() {
-    var accordion = document.querySelector('.whatsapp-popup .lawyer-accordion');
+      var accordion = document.querySelector('.whatsapp-popup .lawyer-accordion');
       accordion.style.display = (accordion.style.display === 'block') ? 'none' : 'block';
     }
-
-// Cerrar el acordeón al hacer clic fuera de él
     document.addEventListener('click', function(event) {
-    var whatsappPopup = document.querySelector('.whatsapp-popup');
-    var accordion = document.querySelector('.whatsapp-popup .lawyer-accordion');
-
-  // Verifica si el clic fue fuera del popup y del acordeón
-  if (!whatsappPopup.contains(event.target) && accordion.style.display === 'block') {
-    accordion.style.display = 'none'; // Cierra el acordeón
-    }
-  });
-  </script>  
+      var whatsappPopup = document.querySelector('.whatsapp-popup');
+      var accordion = document.querySelector('.whatsapp-popup .lawyer-accordion');
+      if (!whatsappPopup.contains(event.target) && accordion.style.display === 'block') {
+        accordion.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
